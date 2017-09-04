@@ -1,10 +1,11 @@
 package edu.wpi.first.wpilib.javastyle
 
 open class WPILibJavaStylePluginExtension {
-    val checkstyle = true
-    val checkstyleVersion = 8.1
+    var checkstyle = true
+    var checkstyleVersion = 8.1
 
-    val pmd = true
+    var pmd = true
 
-    val findbugs = true
+    var findbugs = true
+    var findBugsEffort = "max"
 }

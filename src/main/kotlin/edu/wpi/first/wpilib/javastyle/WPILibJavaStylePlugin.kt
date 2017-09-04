@@ -4,13 +4,19 @@ import groovy.util.XmlParser
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginConvention
-import org.gradle.api.plugins.quality.*
+import org.gradle.api.plugins.quality.CheckstyleExtension
+import org.gradle.api.plugins.quality.CheckstylePlugin
+import org.gradle.api.plugins.quality.FindBugs
+import org.gradle.api.plugins.quality.FindBugsExtension
+import org.gradle.api.plugins.quality.FindBugsPlugin
+import org.gradle.api.plugins.quality.PmdExtension
+import org.gradle.api.plugins.quality.PmdPlugin
 
 class WPILibJavaStylePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
 
-        val extension = project.extensions.create("javastyle", WPILibJavaStylePluginExtension::class.java)
+        val extension = project.extensions.create("WPILibJavaStyle", WPILibJavaStylePluginExtension::class.java)
 
         // Only for java projects
         project.pluginManager.withPlugin("java") {
@@ -34,7 +40,7 @@ class WPILibJavaStylePlugin : Plugin<Project> {
             if (extension.findbugs) {
                 project.plugins.apply(FindBugsPlugin::class.java)
                 project.extensions.configure(FindBugsExtension::class.java, { findBugs ->
-                    findBugs.effort = "max"
+                    findBugs.effort = extension.findBugsEffort
                     findBugs.sourceSets = project.convention.getPlugin(JavaPluginConvention::class.java).sourceSets
                 })
 
