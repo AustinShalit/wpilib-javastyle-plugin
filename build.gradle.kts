@@ -2,10 +2,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.task
 
-repositories {
-    mavenCentral()
-}
-
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.1.4-3"
     id("com.gradle.plugin-publish") version "0.9.7"
@@ -14,6 +10,10 @@ plugins {
 
 group = "edu.wpi.first.wpilib"
 version = "1.0.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     compileOnly(gradleApi())
